@@ -1,5 +1,10 @@
 //Código base para competencia de Robochamps
-//Se puede modificar editar o borrar cosas
+//Copienlo y pegenlo en su Arduino IDE en caso de querer usar
+
+//NOTA IMPORTANTE - Los carritos estaran usando un modulo bluetooth para recibir comandos(asi podran manejar su carrito)
+//NOTA IMPORTANTE - Existen aplicaciones en play store que permiten mandar letras o numeros al modulo y el arduino los recibe
+
+//Se puede modificar editar o borrar cosas 
 
 //Seccion del código en el que se importa la libreria de Servo
 #include <Servo.h>
@@ -7,7 +12,7 @@
 //De esta forma se declara el servo: Servo nombre_que_le_quieras_asignar
 Servo servoEnfrente;
 
-//Variable que nos permitira guardar los valores que registra el modulo Bluetooth
+//Variable que nos permitira guardar los valores que registra el modulo Bluetooth (Lo que se comentaba en NOTA IMPORTANTE)
 char bluetoothReading;
 
 //Variables para guardar los numeros de los pines de los motores Izquierdos
@@ -29,7 +34,7 @@ void setup() {
   //Se declara el servo (Si es que van a usar) y el puerto en el que esta
   servoEnfrente.attach(3);
 
-  //Linea necesaria para la lectura de datos del Arduino, esta iniciara un puerto serie (Puerto que estara recibiendo valores a 9600 baudios)
+  //Linea necesaria para la lectura de datos del Arduino (IMPORTANTE PARA EL MODULO BLUETOOTH), esta iniciara un puerto serie (Puerto que estara recibiendo valores a 9600 baudios)
   Serial.begin(9600);
 
   //Lineas que nos sirven para apagar los motores desde el comienzo
@@ -42,7 +47,7 @@ void setup() {
 }
 
 void loop() {
-    //Condicional mencionada en el paso 5, en caso de que no se detecte modulo bluetooth el codigo no hara nada
+    //Condicional que nos permite conocer si el modulo esta agarrando senales de la placa bluetooth o no
     if(Serial.available()){
       bluetoothReading = Serial.read(); //Se asigna el valor leido por el puerto serial (El modulo Bluetooth) a la variable bluetoothReading
       Serial.println(t); 
